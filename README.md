@@ -1,34 +1,50 @@
-# How to Run NVIDIA LocateAnything-3B Locally (Fixing Series 50 GPU Errors)
+<div align="center">
+  <h1>🎯 How to Run NVIDIA LocateAnything-3B Locally</h1>
+  <h3><i>(The Ultimate Fix for NVIDIA Series 50 GPU Errors)</i></h3>
+</div>
 
-There are known to be a lot of errors and compatibility issues when trying to run the `nvidia/LocateAnything-3B` model locally, especially on newer NVIDIA Series 50 GPUs. If you've been struggling with hallucinated outputs, cache errors, or broken generation loops, this repository is the solution.
+<br/>
 
-With this guide, anyone can successfully set up and run the LocateAnything-3B model locally without Gradio. By simply pinning the correct dependencies and using our refactored script, you can generate flawless bounding box detections.
+Are you pulling your hair out trying to run the `nvidia/LocateAnything-3B` model locally? 🤯 Getting strange hallucinated outputs like `!!!!!`, dealing with HuggingFace cache errors, or finding that the generation loops are completely broken on newer **NVIDIA Series 50 GPUs**? 
 
-## Setup Guide
+You are not alone! Many developers face compatibility issues when running this powerful Vision-Language Model on modern hardware. **But fear not!** 🦸‍♂️ This repository provides the exact fix and a flawless local implementation script (no Gradio required!). 
 
-1. **Create a Clean Environment**
+By pinning the precise dependencies and using our refactored script, you can generate pixel-perfect bounding box detections in minutes. 🚀
+
+---
+
+## 🛠️ Step-by-Step Setup Guide
+
+Follow these steps exactly to guarantee a 100% clean and working environment:
+
+### 1️⃣ Create a Clean Environment
+First, ensure you have a pristine Conda environment using Python 3.12:
 ```bash
 conda create -n locateanything python=3.12 -y
 conda activate locateanything
 ```
 
-2. **Install PyTorch**
+### 2️⃣ Install PyTorch
+Install PyTorch and TorchVision. *(Note: Adjust the index URL if you need a different CUDA version)*:
 ```bash
 pip install torch==2.8.0 torchvision==0.23.0 --index-url https://download.pytorch.org/whl/cu128
 ```
 
-3. **Install Critical Dependencies (Exact Transformers version required)**
+### 3️⃣ Install Critical Dependencies 🚨
+**THIS IS THE MAGIC FIX:** The model completely breaks on `transformers 5.x`. You **must** install the exact `4.57.1` version used during training/validation!
 ```bash
 pip install transformers==4.57.1
 ```
 
-4. **Install Remaining Libraries**
+### 4️⃣ Install Remaining Libraries
+Grab the rest of the required packages for image processing and inference:
 ```bash
 pip install opencv-python-headless Pillow numpy peft huggingface_hub decord lmdb
 ```
 
-5. **Run Inference**
-Update `IMAGE_TO_PROCESS` and `TARGET_CATEGORIES` in `main.py`, then run:
+### 5️⃣ Run Inference! 🎉
+Update `IMAGE_TO_PROCESS` and `TARGET_CATEGORIES` at the bottom of `main.py`, then run:
 ```bash
 python main.py
 ```
+*Voilà! The script will output an image named `[your_image]_detected.jpg` with beautiful, colorful bounding boxes drawn directly on it!* 🖼️✨
