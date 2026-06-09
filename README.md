@@ -1,4 +1,10 @@
-# Setup Guide
+# How to Run NVIDIA LocateAnything-3B Locally (Fixing Series 50 GPU Errors)
+
+There are known to be a lot of errors and compatibility issues when trying to run the `nvidia/LocateAnything-3B` model locally, especially on newer NVIDIA Series 50 GPUs. If you've been struggling with hallucinated outputs, cache errors, or broken generation loops, this repository is the solution.
+
+With this guide, anyone can successfully set up and run the LocateAnything-3B model locally without Gradio. By simply pinning the correct dependencies and using our refactored script, you can generate flawless bounding box detections.
+
+## Setup Guide
 
 1. **Create a Clean Environment**
 ```bash
